@@ -19,11 +19,13 @@ const router = createBrowserRouter([
                 path: '/',
                 element: <HomeLayout></HomeLayout>
             },
-            {
-                path: '/allJob',
-                element: <PrivetRout><AllJobs></AllJobs></PrivetRout>
-            },
         ]
+    },
+    {
+        path: '/allJob',
+        element: <PrivetRout><AllJobs></AllJobs></PrivetRout>,
+        errorElement: <Error />
+
     },
     {
         path: '/login',
