@@ -1,6 +1,6 @@
 import { createBrowserRouter, } from "react-router-dom";
 import Root from "./layouts/Root";
-import AllJobs from "./Components/AllJobs";
+import AllJobs from "./layouts/AllJobs";
 import HomeLayout from "./layouts/HomeLayout";
 import Error from "./Components/Fixed/Error";
 import LoginPage from "./Auth/Log/LoginPage";
@@ -23,6 +23,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/allJob',
+        loader: () => fetch('http://localhost:5000/allJobs'),
         element: <PrivetRout><AllJobs></AllJobs></PrivetRout>,
         errorElement: <Error />
 
