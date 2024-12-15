@@ -1,9 +1,9 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import FooterSec from "../Components/Fixed/FooterSec";
 import NavbarSec from "../Components/Fixed/NavbarSec";
 import { IoLocationSharp, IoTime } from "react-icons/io5";
 import { PiHandbagFill } from "react-icons/pi";
-import { Zoom } from "react-awesome-reveal";
+import { Fade, Zoom } from "react-awesome-reveal";
 
 const AllJobs = () => {
 
@@ -31,54 +31,63 @@ const AllJobs = () => {
 
             {/* ---------------all jobs------------------ */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-2 md:mx-10 my-6 md:my-10 ">
-                {data.map(job => <div key={job._id}
-                    className="bg-base-300 px-4 py-1 rounded-xl">
+                <Fade duration={2000}>
+                    {data.map(job => <div key={job._id}
+                        className="bg-base-300 px-4 py-1 rounded-xl">
 
-                    {/* ---------image and title---- */}
-                    <div className="flex items-center gap-3 my-2">
-                        {/* -iamge- */}
-                        <div>
-                            <img src={job.company_logo} alt="logo" className="w-10" />
+                        {/* ---------image and title---- */}
+                        <div className="flex items-center gap-3 my-2">
+                            {/* -iamge- */}
+                            <div>
+                                <img src={job.company_logo} alt="logo" className="w-10" />
+                            </div>
+
+                            {/* -text- */}
+                            <div>
+                                <h1 className="text-xl font-bold hover:text-blue-600">{job.company}</h1>
+                                <p className="flex items-center gap-1 text-gray-400 text-sm"><IoLocationSharp /> {job.location}</p>
+                            </div>
                         </div>
 
-                        {/* -text- */}
-                        <div>
-                            <h1 className="text-xl font-bold">{job.company}</h1>
-                            <p className="flex items-center gap-1 text-gray-400 text-sm"><IoLocationSharp /> {job.location}</p>
+                        {/* -----title and time update------ */}
+                        <div className="mt-5">
+                            <h1 className="font-bold">{job.title}</h1>
+
+                            {/* type and time */}
+                            <div className="flex items-center gap-3 text-sm text-gray-400">
+                                <p className="flex items-center gap-1"><PiHandbagFill /> {job.jobType}</p>
+                                <p className="flex items-center gap-1"><IoTime /> updated 5 min. ago.</p>
+                            </div>
                         </div>
-                    </div>
 
-                    {/* -----title and time update------ */}
-                    <div className="mt-5">
-                        <h1 className="font-bold">{job.title}</h1>
+                        {/* ----------description---------- */}
+                        <p className="h-[65px] mt-5 text-sm">
+                            {job.description}
+                        </p>
 
-                        {/* type and time */}
-                        <div className="flex items-center gap-3 text-sm text-gray-400">
-                            <p className="flex items-center gap-1"><PiHandbagFill /> {job.jobType}</p>
-                            <p className="flex items-center gap-1"><IoTime /> updated 5 min. ago.</p>
+                        {/* ------------requirements------ */}
+                        <div className=" bg-white py-1 px-2 rounded-md text-xs">
+                            {job.requirements.map((req, i) => <p key={i} className="my-2">◾ {req}</p>)}
                         </div>
-                    </div>
 
-                    {/* ----------description---------- */}
-                    <p className="h-[65px] mt-5 text-sm">
-                        {job.description}
-                    </p>
+                        {/* ---------salary and apply btn */}
+                        <div className="flex items-center justify-between my-5">
+                            <h1 className="text-gray-500"><span className="text-xl italic font-light text-info">{job.salaryRange.min}</span> {job.salaryRange.currency}/month </h1>
 
-                    {/* ------------requirements------ */}
-                    <div className=" bg-white py-1 px-2 rounded-md text-xs">
-                        {job.requirements.map((req, i) => <p key={i} className="my-2">◾ {req}</p>)}
-                    </div>
 
-                    {/* ---------salary and apply btn */}
-                    <div className="flex items-center justify-between my-5">
-                        <h1 className="text-gray-500"><span className="text-xl italic font-light text-info">{job.salaryRange.min}-{job.salaryRange.max} {job.salaryRange.currency}</span> /month </h1>
-
-                        <button className="btn btn-sm btn-outline btn-success">Apply Now</button>
-
-                    </div>
-                </div>)}
-
+                            <div className="flex gap-2">
+                                <Link to={`/allJob/details/${job._id}`}>
+                                    <button className="btn btn-xs btn-outline btn-info">Details</button>
+                                </Link>
+                                <Link to={`/allJob/apply/${job._id}`}>
+                                    <button className="btn btn-xs btn-outline btn-success">Apply Now</button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>)}
+                </Fade>
             </div>
+
 
             <FooterSec />
         </div>

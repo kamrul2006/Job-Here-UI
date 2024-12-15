@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Fade, Zoom } from "react-awesome-reveal";
 import { IoLocationSharp, IoTime } from "react-icons/io5";
 import { PiHandbagFill } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 const SomeJob = () => {
 
@@ -13,11 +14,11 @@ const SomeJob = () => {
             .then(dt => setData(dt))
     }, [])
 
-    const jobs = Work.slice(Math.max(Work.length - 6, 0))
-    console.log(Work)
+    const jobs = Work.slice(Math.max(Work.length - 4, 0))
+    // console.log(Work)
 
     return (
-        <div className="my-5 md:my-20">
+        <div className="my-5 md:my-20 border">
 
             {/* ----------------header------------- */}
             <div className="bg-gray-300 py-3 px-2 md:px-10">
@@ -49,7 +50,7 @@ const SomeJob = () => {
 
                             {/* -text- */}
                             <div>
-                                <h1 className="text-xl font-bold">{job.company}</h1>
+                                <h1 className="text-xl font-bold hover:text-blue-500">{job.company}</h1>
                                 <p className="flex items-center gap-1 text-gray-400 text-sm"><IoLocationSharp /> {job.location}</p>
                             </div>
                         </div>
@@ -80,12 +81,21 @@ const SomeJob = () => {
                         <div className="flex items-center justify-between my-5">
                             <h1 className="text-gray-500"><span className="text-xl italic font-light text-info">{job.salaryRange.min}</span> {job.salaryRange.currency}/month </h1>
 
-                            <button className="btn btn-sm btn-outline btn-success">Apply Now</button>
+                            <Link to={`/allJob/apply/${job._id}`}>
+                            <button className="btn btn-xs btn-outline btn-success">Apply Now</button>
+                            </Link>
 
                         </div>
-                    </div>)}</Fade>
-
+                    </div>)}
+                </Fade>
             </div>
+
+            <div className="mx-auto flex items-center bg-base-300 py-5">
+                <Link to={`/allJob`} className="mx-auto">
+                    <button className="btn btn-xs md:btn-md rounded-full mx-auto btn-outline text-lg">See all Jobs</button>
+                </Link>
+            </div>
+
         </div>
     );
 };

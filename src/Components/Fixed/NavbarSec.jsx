@@ -7,6 +7,7 @@ const NavbarSec = () => {
     const list = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/allJob'}>All Jobs</NavLink></li>
+        <li><NavLink to={'/myApply'}>My Apply</NavLink></li>
     </>
 
     const { user, UserSignOut } = useContext(AuthContext)
