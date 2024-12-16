@@ -21,6 +21,8 @@ const JobApply = () => {
         const resume = E.resume.value
         const linkedin = E.linkedin.value
         const image = E.img.value
+        console.log(image);
+
 
         const formData = {
             name,
@@ -31,7 +33,15 @@ const JobApply = () => {
             resume,
             linkedin,
             image,
-            jobInfo: [data.company, data.salaryRange, data.requirements, data.responsibilities, data.hr_email, data.hr_name, data.company_logo]
+            jobInfo: {
+                company: data.company,
+                salaryRange: data.salaryRange,
+                requirements: data.requirements,
+                responsibilities: data.responsibilities,
+                hr_email: data.hr_email,
+                hr_name: data.hr_name,
+                company_logo: data.company_logo
+            }
         }
 
         // console.log(formData);
@@ -50,7 +60,7 @@ const JobApply = () => {
                 if (data.insertedId) {
                     Swal.fire({
                         title: 'Successful',
-                        text: 'You Applied For Visa SuccessFully.',
+                        text: 'You Applied For the job SuccessFully.',
                         icon: 'success',
                         confirmButtonText: "OK"
                     })
