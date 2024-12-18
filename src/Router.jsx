@@ -10,6 +10,8 @@ import JobDetails from "./layouts/Pages/JobDetails";
 import JobApply from "./layouts/Pages/JobApply";
 import MyApplyes from "./layouts/Pages/MyApplyes";
 import AddJobs from "./layouts/Pages/AddJobs";
+import MyPostedJobs from "./layouts/Pages/MyPostedJobs";
+import WhoApplied from "./layouts/Pages/WhoApplied";
 
 
 
@@ -42,6 +44,16 @@ const router = createBrowserRouter([
                 path: '/addJob',
                 loader: () => fetch(`http://localhost:5000/allJobs`),
                 element: <PrivetRout><AddJobs /></PrivetRout>,
+            },
+            {
+                path: '/postedJob',
+                loader: () => fetch(`http://localhost:5000/allJobs`),
+                element: <PrivetRout><MyPostedJobs /></PrivetRout>,
+            },
+            {
+                path: `/whoApplied/:id`,
+                loader: ({params}) => fetch(`http://localhost:5000/apply/applicant/${params.id}`),
+                element: <PrivetRout><WhoApplied /></PrivetRout>,
             },
         ]
     },

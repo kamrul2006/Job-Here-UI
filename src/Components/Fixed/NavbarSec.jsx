@@ -8,6 +8,7 @@ const NavbarSec = () => {
         <li><NavLink to={'/'}>Home</NavLink></li>
         <li><NavLink to={'/allJob'}>All Jobs</NavLink></li>
         <li><NavLink to={'/addJob'}>Add Job</NavLink></li>
+        <li><NavLink to={'/postedJob'}>My Job Post</NavLink></li>
         <li><NavLink to={'/myApply'}>My Apply</NavLink></li>
     </>
 

@@ -51,6 +51,7 @@ const MyApplyes = () => {
                                 <p className="text-center font-bold text-xl font-serif  border-b-2 border-black mb-2">Applicant Information</p>
                                 <p><span className=" font-bold">Applied By:</span> <br /> {apply.name} </p>
                                 <p><span className=" font-bold">Email :</span> <br /> {apply.email}</p>
+                                <p  className="bg-white px-2 rounded"><span className=" font-bold">Application Status :</span> {apply.status ? apply.status : "Pending"}</p>
                             </div>
                         </div>
 

@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import si from "../assets/abc.jpeg"
 import sii from "../assets/s2.png"
 import NavbarSec from "./Fixed/NavbarSec";
-import {JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
+import { JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
+import { Link } from "react-router-dom";
 const Banner = () => {
     return (
         <div>
@@ -30,7 +31,10 @@ const Banner = () => {
                                     applications every single day
                                 </p></Slide>
                             <JackInTheBox>
-                                <button className="btn btn-primary btn-outline btn-xs rounded-full md:btn-sm">Get Started</button></JackInTheBox>
+                                <Link to={"/allJob"}>
+                                    <button className="btn btn-primary btn-outline btn-xs rounded-full md:btn-sm">Get Started</button>
+                                </Link>
+                            </JackInTheBox>
                         </div>
                     </div>
 

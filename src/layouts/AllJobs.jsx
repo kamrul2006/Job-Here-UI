@@ -65,6 +65,16 @@ const AllJobs = () => {
                             {job.description}
                         </p>
 
+                        {/* ----------deadline---------- */}
+                        <p className=" my-3 text-sm text-red-500">
+                            Dead Line:  {job.applicationDeadline}
+                        </p>
+
+                        {/* ----------total apply---------- */}
+                        <p className=" my-2 bg-white text-sm px-2 py-1 rounded-md text-blue-500">
+                           Total Application:  {job.applyCount ? job.applyCount : 0} .
+                        </p>
+
                         {/* ------------requirements------ */}
                         <div className=" bg-white py-1 px-2 rounded-md text-xs">
                             {job.requirements.map((req, i) => <p key={i} className="my-2">◾ {req}</p>)}

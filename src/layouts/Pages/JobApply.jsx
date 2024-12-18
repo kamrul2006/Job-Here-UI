@@ -1,10 +1,12 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import NavbarSec from "../../Components/Fixed/NavbarSec";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const JobApply = () => {
+
+    const navigate = useNavigate()
 
     const { user } = useContext(AuthContext)
     const data = useLoaderData()
@@ -21,7 +23,9 @@ const JobApply = () => {
         const resume = E.resume.value
         const linkedin = E.linkedin.value
         const image = E.img.value
-        console.log(image);
+        // console.log(image);
+
+        console.log(data._id)
 
 
         const formData = {
@@ -33,6 +37,7 @@ const JobApply = () => {
             resume,
             linkedin,
             image,
+            job_id: data._id,
             jobInfo: {
                 company: data.company,
                 salaryRange: data.salaryRange,
@@ -64,7 +69,8 @@ const JobApply = () => {
                         icon: 'success',
                         confirmButtonText: "OK"
                     })
-                    E.reset()
+                    e.target.reset()
+                    navigate('/myApply')
                 }
 
             })

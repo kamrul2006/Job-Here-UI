@@ -1,8 +1,13 @@
 import { Zoom } from "react-awesome-reveal";
 import NavbarSec from "../../Components/Fixed/NavbarSec";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const AddJobs = () => {
+    const navigate = useNavigate()
+    const { user } = useContext(AuthContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -44,7 +49,8 @@ const AddJobs = () => {
             },
             requirements,
             status: "active",
-            responsibilities
+            responsibilities,
+            applyCount: 0
         }
 
         // console.log(formData);
@@ -68,6 +74,7 @@ const AddJobs = () => {
                         confirmButtonText: "OK"
                     })
                     E.reset()
+                    navigate('/postedJob')
                 }
 
             })
@@ -324,6 +331,7 @@ const AddJobs = () => {
                                 id="resume"
                                 name="hr_name"
                                 placeholder="Input hr_name"
+                                defaultValue={user.displayName}
                                 className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100 p-2"
                                 required
                             />
@@ -339,6 +347,7 @@ const AddJobs = () => {
                                 id="li"
                                 name="hr_email"
                                 placeholder="Input hr_email"
+                                defaultValue={user.email}
                                 className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100 p-2"
                                 required
                             />

@@ -98,7 +98,7 @@ const JobDetails = () => {
 
                                 <div className="flex gap-2">
                             <Link to={`/allJob`}>
-                                <button className="btn btn-sm md:btn-md btn-outline">{"<<<   Go Back"}</button>
+                                <button className="btn btn-sm md:btn-md btn-outline">{"See All Jobs"}</button>
                             </Link>
                             <Link to={`/allJob/apply/${data._id}`}>
                             <button className="btn btn-sm md:btn-md btn-outline btn-success">Apply Now</button>
