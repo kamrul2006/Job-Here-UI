@@ -10,6 +10,7 @@ const JobApply = () => {
 
     const { user } = useContext(AuthContext)
     const data = useLoaderData()
+    console.log(user)
 
     const handleSubmit = (e) => {
         e.preventDefault();

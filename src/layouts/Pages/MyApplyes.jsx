@@ -1,16 +1,23 @@
-import { useLoaderData } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
 import NavbarSec from "../../Components/Fixed/NavbarSec";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Zoom } from "react-awesome-reveal";
 import app from "../../assets/allpi.jpg"
+import axios from "axios";
 
 const MyApplyes = () => {
     const { user } = useContext(AuthContext)
-    const data = useLoaderData()
-    const myJobsApply = data.filter(data => data.email == user.email);
 
-    const [applies, setApplies] = useState(myJobsApply)
+    const [data, setData] = useState([])
+    useEffect(() => {
+        axios.get(`http://localhost:5000/apply?email=${user.email}`, { withCredentials: true })
+            .then(res => setData(res.data))
+    }, [])
+
+    // const myJobsApply = data.filter(data => data.email == user.email);
+    console.log(user.email)
+    // console.log(myJobsApply)
 
     return (
         <div>
@@ -35,7 +42,7 @@ const MyApplyes = () => {
 
             {/* showing all applies */}
             <div className="my-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 md:my-10">
-                {applies.map(apply =>
+                {data.map(apply =>
                     <div key={apply._id}
                         className=" border rounded-xl p-2">
 
@@ -51,7 +58,7 @@ const MyApplyes = () => {
                                 <p className="text-center font-bold text-xl font-serif  border-b-2 border-black mb-2">Applicant Information</p>
                                 <p><span className=" font-bold">Applied By:</span> <br /> {apply.name} </p>
                                 <p><span className=" font-bold">Email :</span> <br /> {apply.email}</p>
-                                <p  className="bg-white px-2 rounded"><span className=" font-bold">Application Status :</span> {apply.status ? apply.status : "Pending"}</p>
+                                <p className="bg-white px-2 rounded"><span className=" font-bold">Application Status :</span> {apply.status ? apply.status : "Pending"}</p>
                             </div>
                         </div>
 

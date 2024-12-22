@@ -10,6 +10,7 @@ import { Auth as auth } from "../Firebase/Firebase.config";
 //----------------the context here------------------
 export const AuthContext = createContext()
 const provider = new GoogleAuthProvider()
+
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null)
@@ -24,7 +25,7 @@ const AuthProvider = ({ children }) => {
 
     //--------------------------Login user with email password-------
     const LoginUser = (email, password) => {
-        
+
         return signInWithEmailAndPassword(auth, email, password)
     }
 

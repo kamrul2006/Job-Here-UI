@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 // import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 
 const LoginPage = () => {
@@ -23,8 +24,10 @@ const LoginPage = () => {
     //---------- Context use----------------------
 
     const { LoginUser, setUser, GoogleLogin } = useContext(AuthContext)
+
     const HandleLogin = (e) => {
         e.preventDefault();
+        setError(null)
         const Email = e.target.email.value
         const Password = e.target.password.value
 
@@ -34,37 +37,18 @@ const LoginPage = () => {
                 const user = userCredential.user;
                 setUser(user)
 
-                // //-----update last login time.
-                // const lastSignInTime = userCredential?.user?.metadata?.lastSignInTime
-                // // console.log(lastSignInTime)
-                // const loginInfo = { Email, lastSignInTime }
+                const jUser = { email: user }
 
-                // fetch(`https://coffi-back.vercel.app/users`, {
-                //     method: "PATCH",
-                //     headers: {
-                //         'content-type': 'application/json'
-                //     },
-                //     body: JSON.stringify(loginInfo)
-                // })
-                //     .then(res => res.json())
-                //     .then(data => {
-                //         console.log(data)
-
-                //         if (data.modifiedCount) {
-                //             Swal.fire({
-                //                 title: 'Successful',
-                //                 text: 'User Added Properly.',
-                //                 icon: 'success',
-                //                 confirmButtonText: "It's Great"
-                //             })
-                //         }
-                //     })
+                axios.post('http://localhost:5000/jwt', jUser, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                    })
 
                 navigate(location.state ? location.state : '/')
             })
             .catch((error) => {
                 // console.log(error)
-                navigate(location.state ? location.state : '/')
+                // navigate(location.state ? location.state : '/')
                 if (error) { setError('Password or Email is invalid..!') }
             });
     }
@@ -73,8 +57,15 @@ const LoginPage = () => {
     const HandleGoogleLogin = () => {
         GoogleLogin()
             .then((res) => {
-                // console.log(res.user)
+                console.log(res.user)
                 setUser(res.user)
+                const jUser = { email: res.user }
+
+                axios.post('http://localhost:5000/jwt', jUser, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data)
+                    })
+
                 navigate(location.state ? location.state : '/')
             })
             .catch(err => {
