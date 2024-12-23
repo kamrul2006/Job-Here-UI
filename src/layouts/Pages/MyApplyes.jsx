@@ -4,20 +4,25 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Zoom } from "react-awesome-reveal";
 import app from "../../assets/allpi.jpg"
-import axios from "axios";
+import useAxiosSecure from "../../hooks/useAxiocSec";
 
 const MyApplyes = () => {
     const { user } = useContext(AuthContext)
+    const axiosSec = useAxiosSecure()
 
     const [data, setData] = useState([])
     useEffect(() => {
-        axios.get(`http://localhost:5000/apply?email=${user.email}`, { withCredentials: true })
+
+        // axios.get(`http://localhost:5000/apply?email=${user.email}`, { withCredentials: true })
+        //     .then(res => setData(res.data))
+
+        axiosSec.get(`/apply?email=${user.email}`)
             .then(res => setData(res.data))
+
+
     }, [])
 
-    // const myJobsApply = data.filter(data => data.email == user.email);
-    console.log(user.email)
-    // console.log(myJobsApply)
+    // console.log(user.email)
 
     return (
         <div>

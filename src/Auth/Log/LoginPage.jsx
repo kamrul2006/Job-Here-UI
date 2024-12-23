@@ -3,7 +3,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 // import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import axios from "axios";
 
 
 const LoginPage = () => {
@@ -37,13 +36,6 @@ const LoginPage = () => {
                 const user = userCredential.user;
                 setUser(user)
 
-                const jUser = { email: user }
-
-                axios.post('http://localhost:5000/jwt', jUser, { withCredentials: true })
-                    .then(res => {
-                        console.log(res.data)
-                    })
-
                 navigate(location.state ? location.state : '/')
             })
             .catch((error) => {
@@ -59,12 +51,6 @@ const LoginPage = () => {
             .then((res) => {
                 console.log(res.user)
                 setUser(res.user)
-                const jUser = { email: res.user }
-
-                axios.post('http://localhost:5000/jwt', jUser, { withCredentials: true })
-                    .then(res => {
-                        console.log(res.data)
-                    })
 
                 navigate(location.state ? location.state : '/')
             })
