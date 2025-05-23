@@ -8,7 +8,7 @@ const Banner = () => {
     return (
         <div className="lg:pt-20">
             <div
-                className=" bg-cover bg-center mb-5 md:mb-10"
+                className=" bg-cover bg-center mb-5 md:mb-10 lg:pt-10"
                 style={{ backgroundImage: `url(${bg})`, }}>
 
                 <div className=" md:flex items-center">
@@ -47,7 +47,7 @@ const Banner = () => {
                             animate={{ x: [0, 20, 0] }}
                             transition={{ duration: 3, delay: 1, ease: "linear", repeat: Infinity, }}>
                             <img
-                                src={si} className=" mx-auto w-40 md:w-full h-1/2 -mb-5" />
+                                src={si} className=" mx-auto w-40 md:w-full h-1/2 -mb-10" />
                         </motion.div>
 
                         <motion.img
@@ -62,3 +62,5 @@ const Banner = () => {
 };
 
 export default Banner;
+
+
