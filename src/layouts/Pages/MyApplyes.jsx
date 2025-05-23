@@ -26,7 +26,6 @@ const MyApplyes = () => {
 
     return (
         <div>
-            <NavbarSec></NavbarSec>
 
 
             {/* ----------------header------------- */}

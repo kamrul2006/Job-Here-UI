@@ -13,7 +13,6 @@ const JobDetails = () => {
     return (
         <div>
 
-            <NavbarSec />
 
             <div className="mb-5 md:mb-20">
 
@@ -82,7 +81,7 @@ const JobDetails = () => {
                                 <div className="text-sm text-gray-500">
                                     <p className="font-bold">Responsibilities:</p>
                                     <ul>
-                                        {responsibilities.map((res,i)=><li key={i}>✔ {res}</li>)}
+                                        {responsibilities.map((res, i) => <li key={i}>✔ {res}</li>)}
                                     </ul>
                                 </div>
                             </div>
@@ -97,12 +96,12 @@ const JobDetails = () => {
                                 <h1 className="text-gray-500">Salary: <span className="text-xl md:text-3xl italic font-light text-info">{salaryRange.min}-{salaryRange.max}</span> {salaryRange.currency}/month </h1>
 
                                 <div className="flex gap-2">
-                            <Link to={`/allJob`}>
-                                <button className="btn btn-sm md:btn-md btn-outline">{"See All Jobs"}</button>
-                            </Link>
-                            <Link to={`/allJob/apply/${data._id}`}>
-                            <button className="btn btn-sm md:btn-md btn-outline btn-success">Apply Now</button>
-                            </Link>                        </div>
+                                    <Link to={`/allJob`}>
+                                        <button className="btn btn-sm md:btn-md btn-outline">{"See All Jobs"}</button>
+                                    </Link>
+                                    <Link to={`/allJob/apply/${data._id}`}>
+                                        <button className="btn btn-sm md:btn-md btn-outline btn-success">Apply Now</button>
+                                    </Link>                        </div>
 
                             </div>
                         </div>

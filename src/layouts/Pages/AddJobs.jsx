@@ -83,7 +83,6 @@ const AddJobs = () => {
 
     return (
         <div>
-            <NavbarSec />
             <div className="border">
                 {/* ----------------header------------- */}
                 <div className="bg-gray-300 py-3 px-2 md:px-10">

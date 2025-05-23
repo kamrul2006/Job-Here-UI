@@ -79,7 +79,6 @@ const JobApply = () => {
 
     return (
         <div>
-            <NavbarSec />
 
             <div className="max-w-3xl mx-auto p-6 bg-gray-100 my-2 md:my-10 shadow-md rounded-lg">
                 <h2 className="md:text-2xl text-xl text-center bg-base-300 py-2 rounded-full mt-5 font-bold mb-4 text-gray-800">Job Application Form</h2>

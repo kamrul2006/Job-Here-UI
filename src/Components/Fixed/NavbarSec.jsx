@@ -11,7 +11,7 @@ const NavbarSec = () => {
                 <NavLink
                     to="/"
                     className={({ isActive }) =>
-                        `px-3 py-2 rounded-md transition-all duration-200 ${isActive ? "text-yellow-500 font-bold underline underline-offset-4" : "hover:text-yellow-500"
+                        `px-3 py-2 rounded-md transition-all duration-200 ${isActive ? "text-yellow-500 font-bold underline underline-offset-8" : "hover:text-yellow-500"
                         }`
                     }
                 >
@@ -22,7 +22,7 @@ const NavbarSec = () => {
                 <NavLink
                     to="/allJob"
                     className={({ isActive }) =>
-                        `px-3 py-2 rounded-md transition-all duration-200 ${isActive ? "text-yellow-500 font-bold underline underline-offset-4" : "hover:text-yellow-500"
+                        `px-3 py-2 rounded-md transition-all duration-200 ${isActive ? "text-yellow-500 font-bold underline underline-offset-8" : "hover:text-yellow-500"
                         }`
                     }
                 >
@@ -33,7 +33,7 @@ const NavbarSec = () => {
                 <NavLink
                     to="/addJob"
                     className={({ isActive }) =>
-                        `px-3 py-2 rounded-md transition-all duration-200 ${isActive ? "text-yellow-500 font-bold underline underline-offset-4" : "hover:text-yellow-500"
+                        `px-3 py-2 rounded-md transition-all duration-200 ${isActive ? "text-yellow-500 font-bold underline underline-offset-8" : "hover:text-yellow-500"
                         }`
                     }
                 >
@@ -44,7 +44,7 @@ const NavbarSec = () => {
                 <NavLink
                     to="/postedJob"
                     className={({ isActive }) =>
-                        `px-3 py-2 rounded-md transition-all duration-200 ${isActive ? "text-yellow-500 font-bold underline underline-offset-4" : "hover:text-yellow-500"
+                        `px-3 py-2 rounded-md transition-all duration-200 ${isActive ? "text-yellow-500 font-bold underline underline-offset-8" : "hover:text-yellow-500"
                         }`
                     }
                 >
@@ -55,7 +55,7 @@ const NavbarSec = () => {
                 <NavLink
                     to="/myApply"
                     className={({ isActive }) =>
-                        `px-3 py-2 rounded-md transition-all duration-200 ${isActive ? "text-yellow-500 font-bold underline underline-offset-4" : "hover:text-yellow-500"
+                        `px-3 py-2 rounded-md transition-all duration-200 ${isActive ? "text-yellow-500 font-bold underline underline-offset-8" : "hover:text-yellow-500"
                         }`
                     }
                 >

@@ -16,7 +16,6 @@ const MyPostedJobs = () => {
 
     return (
         <div>
-            <NavbarSec />
 
             {/* ----------------header------------- */}
             <div className="bg-gray-300 py-3 px-2 md:px-10">
