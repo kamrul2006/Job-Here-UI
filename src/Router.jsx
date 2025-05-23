@@ -26,6 +26,13 @@ const router = createBrowserRouter([
                 element: <HomeLayout></HomeLayout>
             },
             {
+                path: '/allJob',
+                loader: () => fetch('https://job-portal-server-one-alpha.vercel.app/allJobs'),
+                element: <PrivetRout><AllJobs></AllJobs></PrivetRout>,
+                errorElement: <Error />
+
+            },
+            {
                 path: '/allJob/details/:id',
                 loader: ({ params }) => fetch(`https://job-portal-server-one-alpha.vercel.app/allJobs/${params.id}`),
                 element: <PrivetRout><JobDetails /></PrivetRout>,
@@ -52,18 +59,12 @@ const router = createBrowserRouter([
             },
             {
                 path: `/whoApplied/:id`,
-                loader: ({params}) => fetch(`https://job-portal-server-one-alpha.vercel.app/apply/applicant/${params.id}`),
+                loader: ({ params }) => fetch(`https://job-portal-server-one-alpha.vercel.app/apply/applicant/${params.id}`),
                 element: <PrivetRout><WhoApplied /></PrivetRout>,
             },
         ]
     },
-    {
-        path: '/allJob',
-        loader: () => fetch('https://job-portal-server-one-alpha.vercel.app/allJobs'),
-        element: <PrivetRout><AllJobs></AllJobs></PrivetRout>,
-        errorElement: <Error />
 
-    },
     {
         path: '/login',
         element: <LoginPage />,

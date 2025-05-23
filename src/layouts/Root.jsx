@@ -6,14 +6,15 @@ const Root = () => {
     return (
         <div >
 
-            <NavbarSec></NavbarSec>
+            <NavbarSec />
 
             <div className="w-full md:max-w-7xl mx-auto">
 
                 <Outlet />
 
-                <FooterSec />
             </div>
+
+            <FooterSec />
         </div>
     );
 };

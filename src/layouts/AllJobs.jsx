@@ -6,100 +6,106 @@ import { PiHandbagFill } from "react-icons/pi";
 import { Fade, Zoom } from "react-awesome-reveal";
 
 const AllJobs = () => {
-
-    const data = useLoaderData()
-
+    const data = useLoaderData();
 
     return (
-        <div className="w-full md:max-w-7xl mx-auto">
-            <NavbarSec />
+        <div className="w-full max-w-7xl mx-auto lg:pt-16">
+            {/* <NavbarSec /> */}
 
-            {/* ----------------header------------- */}
-            <div className="bg-gray-300 py-3 px-2 md:px-10">
-                {/* --title--- */}
+            {/* Header */}
+            <div className="bg-gradient-to-r from-blue-100 to-purple-100 py-10 px-4 md:px-10 text-center">
                 <Zoom direction="left" delay={50}>
-                    <h1
-                        className="md:mb-5 text-center mb-2 text-blue-700 text-3xl md:text-5xl font-bold my-10 ">
-                        All thr jobs available here.
+                    <h1 className="text-3xl md:text-5xl font-extrabold text-blue-700 mb-4">
+                        Explore All Job Opportunities
                     </h1>
                 </Zoom>
-
-                <p className="text-center w-3/4 mx-auto">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium unde ea itaque similique nam consequuntur quisquam corrupti quae voluptatem doloremque libero, illum aliquam ullam voluptates eaque obcaecati est praesentium atque.
+                <p className="text-gray-600 max-w-2xl mx-auto">
+                    Discover the latest job openings, filter by your preferred field, and apply with a single click.
                 </p>
             </div>
 
-            {/* ---------------all jobs------------------ */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-2 md:mx-10 my-6 md:my-10 ">
-                <Fade duration={2000}>
-                    {data.map(job => <div key={job._id}
-                        className="bg-base-300 px-4 py-1 rounded-xl">
+            {/* Job Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 md:p-10">
+                <Fade duration={1000} cascade damping={0.1}>
+                    {data.map(job => (
+                        <div
+                            key={job._id}
+                            className="bg-white shadow-xl rounded-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300 border border-gray-100"
+                        >
+                            <div className="p-5 flex flex-col h-full">
+                                {/* Header */}
+                                <div className="flex items-center gap-4 mb-4">
+                                    <img src={job.company_logo} alt="Company" className="w-12 h-12 object-cover rounded-md" />
+                                    <div>
+                                        <h2 className="text-lg font-bold text-gray-800 hover:text-blue-500 transition">
+                                            {job.company}
+                                        </h2>
+                                        <p className="text-sm text-gray-500 flex items-center gap-1">
+                                            <IoLocationSharp className="text-blue-500" /> {job.location}
+                                        </p>
+                                    </div>
+                                </div>
 
-                        {/* ---------image and title---- */}
-                        <div className="flex items-center gap-3 my-2">
-                            {/* -iamge- */}
-                            <div>
-                                <img src={job.company_logo} alt="logo" className="w-10" />
-                            </div>
+                                {/* Job Title and Meta */}
+                                <div className="flex justify-between items-center text-sm text-gray-500 mb-2">
+                                    <p className="flex items-center gap-1">
+                                        <PiHandbagFill className="text-purple-500" /> {job.jobType}
+                                    </p>
+                                    <p className="flex items-center gap-1">
+                                        <IoTime className="text-green-500" /> Updated 5 min ago
+                                    </p>
+                                </div>
 
-                            {/* -text- */}
-                            <div>
-                                <h1 className="text-xl font-bold hover:text-blue-600">{job.company}</h1>
-                                <p className="flex items-center gap-1 text-gray-400 text-sm"><IoLocationSharp /> {job.location}</p>
+                                <h3 className="text-xl font-semibold text-gray-800 mb-2">{job.title}</h3>
+
+                                {/* Description */}
+                                <p className="text-sm text-gray-600 line-clamp-3 mb-3 overflow-hidden h-14">
+                                    {job.description}
+                                </p>
+
+                                {/* Requirements */}
+                                <div className="text-sm bg-gray-50 rounded-lg p-3 mb-3 overflow-auto max-h-28 border border-gray-200">
+                                    <p className="font-medium text-gray-700 mb-2">Requirements:</p>
+                                    <ul className="list-disc list-inside space-y-1 text-xs text-gray-600">
+                                        {job.requirements.map((req, idx) => (
+                                            <li key={idx}>{req}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                {/* Deadline & Applications */}
+                                <div className="flex justify-between items-center text-xs text-gray-500 mb-3">
+                                    <span className="text-red-500 font-semibold">Deadline: {job.applicationDeadline}</span>
+                                    <span className="bg-blue-100 text-blue-600 px-2 py-0.5 rounded-full">
+                                        Applications: {job.applyCount || 0}
+                                    </span>
+                                </div>
+
+                                {/* Footer - Salary & Buttons */}
+                                <div className="flex justify-between items-center mt-auto pt-4 border-t">
+                                    <p className="text-sm text-gray-800">
+                                        <span className="text-info font-semibold">{job.salaryRange.min}</span> {job.salaryRange.currency}/month
+                                    </p>
+                                    <div className="flex gap-2">
+                                        <Link to={`/allJob/details/${job._id}`}>
+                                            <button className="btn btn-xs bg-blue-100 text-blue-600 hover:bg-blue-200">
+                                                Details
+                                            </button>
+                                        </Link>
+                                        <Link to={`/allJob/apply/${job._id}`}>
+                                            <button className="btn btn-xs bg-green-100 text-green-600 hover:bg-green-200">
+                                                Apply
+                                            </button>
+                                        </Link>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        {/* -----title and time update------ */}
-                        <div className="mt-5">
-                            <h1 className="font-bold">{job.title}</h1>
-
-                            {/* type and time */}
-                            <div className="flex items-center gap-3 text-sm text-gray-400">
-                                <p className="flex items-center gap-1"><PiHandbagFill /> {job.jobType}</p>
-                                <p className="flex items-center gap-1"><IoTime /> updated 5 min. ago.</p>
-                            </div>
-                        </div>
-
-                        {/* ----------description---------- */}
-                        <p className="h-[65px] mt-5 text-sm">
-                            {job.description}
-                        </p>
-
-                        {/* ----------deadline---------- */}
-                        <p className=" my-3 text-sm text-red-500">
-                            Dead Line:  {job.applicationDeadline}
-                        </p>
-
-                        {/* ----------total apply---------- */}
-                        <p className=" my-2 bg-white text-sm px-2 py-1 rounded-md text-blue-500">
-                           Total Application:  {job.applyCount ? job.applyCount : 0} .
-                        </p>
-
-                        {/* ------------requirements------ */}
-                        <div className=" bg-white py-1 px-2 rounded-md text-xs">
-                            {job.requirements.map((req, i) => <p key={i} className="my-2">◾ {req}</p>)}
-                        </div>
-
-                        {/* ---------salary and apply btn */}
-                        <div className="flex items-center justify-between my-5">
-                            <h1 className="text-gray-500"><span className="text-xl italic font-light text-info">{job.salaryRange.min}</span> {job.salaryRange.currency}/month </h1>
-
-
-                            <div className="flex gap-2">
-                                <Link to={`/allJob/details/${job._id}`}>
-                                    <button className="btn btn-xs btn-outline btn-info">Details</button>
-                                </Link>
-                                <Link to={`/allJob/apply/${job._id}`}>
-                                    <button className="btn btn-xs btn-outline btn-success">Apply Now</button>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>)}
+                    ))}
                 </Fade>
             </div>
 
 
-            <FooterSec />
         </div>
     );
 };
