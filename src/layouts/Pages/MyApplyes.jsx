@@ -13,7 +13,7 @@ const MyApplyes = () => {
     const [data, setData] = useState([])
     useEffect(() => {
 
-        // axios.get(`http://localhost:5000/apply?email=${user.email}`, { withCredentials: true })
+        // axios.get(`https://job-portal-server-one-alpha.vercel.app/apply?email=${user.email}`, { withCredentials: true })
         //     .then(res => setData(res.data))
 
         axiosSec.get(`/apply?email=${user.email}`)

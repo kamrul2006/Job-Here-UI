@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import {  useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 // import Swal from "sweetalert2";
 import { sendEmailVerification } from "firebase/auth";
@@ -146,8 +146,8 @@ const SignupPage = () => {
 
     return (
         <div className="bg-center bg-cover text-white bg-black"
-            // style={{ backgroundImage: `url(${bg})` }}
-            >
+        // style={{ backgroundImage: `url(${bg})` }}
+        >
 
             <Link to={"/"} className="w-fit">
                 <p className="text-3xl pl-10 pt-10 font-bold text-white flex items-center gap-3 w-fit">

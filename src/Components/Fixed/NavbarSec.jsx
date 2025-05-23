@@ -16,8 +16,8 @@ const NavbarSec = () => {
     // console.log(user)
 
     return (
-        <div>
-            <div className="navbar px-5 bg-white/10 backdrop-blur-sm shadow-md py-2 md:py-4 md:px-20 sticky top-1">
+        <div className="fixed w-full z-50">
+            <div className="navbar px-5 bg-white/30 backdrop-blur-sm shadow-md py-2 md:py-0 md:px-20 sticky top-1">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle btn-sm lg:hidden">

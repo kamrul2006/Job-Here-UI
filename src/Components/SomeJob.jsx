@@ -9,7 +9,7 @@ const SomeJob = () => {
     const [Work, setData] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:5000/allJobs')
+        fetch('https://job-portal-server-one-alpha.vercel.app/allJobs')
             .then(res => res.json())
             .then(dt => setData(dt))
     }, [])

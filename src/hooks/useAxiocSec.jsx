@@ -1,11 +1,11 @@
 import axios from 'axios';
-import  { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
 
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://job-portal-server-one-alpha.vercel.app',
     withCredentials: true
 });
 
@@ -17,14 +17,11 @@ const useAxiosSecure = () => {
         axiosInstance.interceptors.response.use(response => {
             return response;
         }, error => {
-            console.log('api response error status', error.status);
-            if (error.status === 401 || error.status === 403) {
+            console.log('api response error status', error?.status);
+
+            if (error?.status === 401 || error?.status === 403) {
                 UserSignOut()
-                    .then(() => {
-                        // redirect to the login page
-                        navigate('/login')
-                    })
-                    .catch(err => console.log(err))
+                navigate('/login')
             }
             return Promise.reject(error);
         })

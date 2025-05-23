@@ -27,39 +27,39 @@ const router = createBrowserRouter([
             },
             {
                 path: '/allJob/details/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/allJobs/${params.id}`),
+                loader: ({ params }) => fetch(`https://job-portal-server-one-alpha.vercel.app/allJobs/${params.id}`),
                 element: <PrivetRout><JobDetails /></PrivetRout>,
             },
             {
                 path: '/allJob/apply/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/allJobs/${params.id}`),
+                loader: ({ params }) => fetch(`https://job-portal-server-one-alpha.vercel.app/allJobs/${params.id}`),
                 element: <PrivetRout><JobApply /></PrivetRout>,
             },
             {
                 path: '/myApply',
-                loader: () => fetch(`http://localhost:5000/apply`),
+                loader: () => fetch(`https://job-portal-server-one-alpha.vercel.app/apply`),
                 element: <PrivetRout><MyApplyes /></PrivetRout>,
             },
             {
                 path: '/addJob',
-                loader: () => fetch(`http://localhost:5000/allJobs`),
+                loader: () => fetch(`https://job-portal-server-one-alpha.vercel.app/allJobs`),
                 element: <PrivetRout><AddJobs /></PrivetRout>,
             },
             {
                 path: '/postedJob',
-                loader: () => fetch(`http://localhost:5000/allJobs`),
+                loader: () => fetch(`https://job-portal-server-one-alpha.vercel.app/allJobs`),
                 element: <PrivetRout><MyPostedJobs /></PrivetRout>,
             },
             {
                 path: `/whoApplied/:id`,
-                loader: ({params}) => fetch(`http://localhost:5000/apply/applicant/${params.id}`),
+                loader: ({params}) => fetch(`https://job-portal-server-one-alpha.vercel.app/apply/applicant/${params.id}`),
                 element: <PrivetRout><WhoApplied /></PrivetRout>,
             },
         ]
     },
     {
         path: '/allJob',
-        loader: () => fetch('http://localhost:5000/allJobs'),
+        loader: () => fetch('https://job-portal-server-one-alpha.vercel.app/allJobs'),
         element: <PrivetRout><AllJobs></AllJobs></PrivetRout>,
         errorElement: <Error />
 

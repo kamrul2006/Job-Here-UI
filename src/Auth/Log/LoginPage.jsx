@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 // import Swal from "sweetalert2";
@@ -49,13 +50,13 @@ const LoginPage = () => {
     const HandleGoogleLogin = () => {
         GoogleLogin()
             .then((res) => {
-                console.log(res.user)
+                // console.log(res.user)
                 setUser(res.user)
 
                 navigate(location.state ? location.state : '/')
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
                 setUser(null)
             })
     }

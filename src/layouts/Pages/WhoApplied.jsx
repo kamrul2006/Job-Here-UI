@@ -11,7 +11,7 @@ const WhoApplied = () => {
         // console.log(status, id)
         const data = { status }
 
-        fetch(`http://localhost:5000/apply/${id}`, {
+        fetch(`https://job-portal-server-one-alpha.vercel.app/apply/${id}`, {
             method: "PATCH",
             headers: {
                 'content-type': "application/json"

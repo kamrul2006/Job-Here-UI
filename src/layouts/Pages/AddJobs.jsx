@@ -56,7 +56,7 @@ const AddJobs = () => {
         // console.log(formData);
 
 
-        fetch('http://localhost:5000/allJobs', {
+        fetch('https://job-portal-server-one-alpha.vercel.app/allJobs', {
             method: "POST",
             headers: {
                 'content-type': "application/json"

@@ -10,7 +10,7 @@ const JobApply = () => {
 
     const { user } = useContext(AuthContext)
     const data = useLoaderData()
-    console.log(user)
+    // console.log(user)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,7 +26,7 @@ const JobApply = () => {
         const image = E.img.value
         // console.log(image);
 
-        console.log(data._id)
+        // console.log(data._id)
 
 
         const formData = {
@@ -53,7 +53,7 @@ const JobApply = () => {
         // console.log(formData);
 
 
-        fetch('http://localhost:5000/apply', {
+        fetch('https://job-portal-server-one-alpha.vercel.app/apply', {
             method: "POST",
             headers: {
                 'content-type': "application/json"

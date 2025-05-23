@@ -1,17 +1,16 @@
 import bg from "../assets/banner3.jpg"
 import { motion } from "framer-motion";
-import si from "../assets/abc.jpeg"
+import si from "../assets/abc.png"
 import sii from "../assets/s2.png"
-import NavbarSec from "./Fixed/NavbarSec";
 import { JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
 import { Link } from "react-router-dom";
 const Banner = () => {
     return (
-        <div>
+        <div className="lg:pt-20">
             <div
                 className=" bg-cover bg-center mb-5 md:mb-10"
                 style={{ backgroundImage: `url(${bg})`, }}>
-                <NavbarSec></NavbarSec>
+
                 <div className=" md:flex items-center">
 
                     {/* ----------------text div ------------------ */}
@@ -42,17 +41,18 @@ const Banner = () => {
                     <div className="mx-auto w-1/2 pb-10 md:pr-10">
                         <motion.img
                             animate={{ x: [1, 30, 0], y: [10, 50, 10] }}
-                            transition={{ duration: 3, delay: 1, ease: "linear", repeat: Infinity, }} src={sii} className="rounded-full ml-auto w-1/3 h-1/4" />
+                            transition={{ duration: 3, delay: 1, ease: "linear", repeat: Infinity, }} src={sii} className="rounded-full ml-auto w-1/3 h-1/4 md:hidden" />
 
                         <motion.div
-                            animate={{ y: [0, 20, 0] }}
+                            animate={{ x: [0, 20, 0] }}
                             transition={{ duration: 3, delay: 1, ease: "linear", repeat: Infinity, }}>
                             <img
-                                src={si} className=" bg-[#4160c76e] rounded-tl-full rounded-br-full border-red-500 border-l-8 border-b-8  mx-auto w-40 md:w-96 h-1/2" />
+                                src={si} className=" mx-auto w-40 md:w-full h-1/2 -mb-5" />
                         </motion.div>
+
                         <motion.img
                             animate={{ x: [1, -30, 0], y: [1, -30, 0] }}
-                            transition={{ duration: 3, delay: 1, ease: "linear", repeat: Infinity, }} src={sii} className="rounded-full w-1/3 h-1/4 mr-auto" />
+                            transition={{ duration: 3, delay: 1, ease: "linear", repeat: Infinity, }} src={sii} className="rounded-full w-1/3 h-1/4 mr-auto md:hidden" />
 
                     </div>
                 </div>
