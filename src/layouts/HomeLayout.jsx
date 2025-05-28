@@ -1,5 +1,6 @@
 import Banner from "../Components/Home/Banner";
 import JobStatsSection from "../Components/Home/JobStatsSection";
+import Newsletter from "../Components/Home/Newsletter";
 import RecentJobs from "../Components/Home/RecentJobs";
 import SomeJob from "../Components/Home/SomeJob";
 import TestimonialsSection from "../Components/Home/TestimonialsSection";
@@ -20,6 +21,8 @@ const HomeLayout = () => {
             <SomeJob />
 
             <JobStatsSection />
+
+            <Newsletter />
         </div>
     );
 };
