@@ -1,6 +1,5 @@
-import bg from "../assets/banner3.jpg";
-import si from "../assets/abc.png";
-import sii from "../assets/s2.png";
+import bg from "../../assets/banner3.jpg";
+import si from "../../assets/abc.png";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 

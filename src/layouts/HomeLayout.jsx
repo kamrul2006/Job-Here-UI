@@ -1,12 +1,16 @@
-import Banner from "../Components/Banner";
-import SomeJob from "../Components/SomeJob";
+import Banner from "../Components/Home/Banner";
+import SomeJob from "../Components/Home/SomeJob";
+import TestimonialsSection from "../Components/Home/TestimonialsSection";
+
 
 const HomeLayout = () => {
     return (
         <div>
-            <Banner></Banner>
+            <Banner />
 
-            <SomeJob></SomeJob>
+            < TestimonialsSection />
+
+            <SomeJob />
         </div>
     );
 };
