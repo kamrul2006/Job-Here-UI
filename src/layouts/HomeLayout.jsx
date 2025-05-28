@@ -1,5 +1,6 @@
 import Banner from "../Components/Home/Banner";
 import JobStatsSection from "../Components/Home/JobStatsSection";
+import RecentJobs from "../Components/Home/RecentJobs";
 import SomeJob from "../Components/Home/SomeJob";
 import TestimonialsSection from "../Components/Home/TestimonialsSection";
 import TopJobCategories from "../Components/Home/TopJobCategories";
@@ -11,6 +12,8 @@ const HomeLayout = () => {
             <Banner />
 
             <TopJobCategories />
+
+            <RecentJobs />
 
             < TestimonialsSection />
 
