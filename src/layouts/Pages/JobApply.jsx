@@ -1,43 +1,26 @@
 import { useLoaderData, useNavigate } from "react-router-dom";
-import NavbarSec from "../../Components/Fixed/NavbarSec";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const JobApply = () => {
-
-    const navigate = useNavigate()
-
-    const { user } = useContext(AuthContext)
-    const data = useLoaderData()
-    // console.log(user)
+    const navigate = useNavigate();
+    const { user } = useContext(AuthContext);
+    const data = useLoaderData();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        const E = e.target
-        const name = E.fullName.value
-        const email = E.email.value
-        const phone = E.phone.value
-        const position = E.position.value
-        const coverLetter = E.coverLetter.value
-        const resume = E.resume.value
-        const linkedin = E.linkedin.value
-        const image = E.img.value
-        // console.log(image);
-
-        // console.log(data._id)
-
+        const form = e.target;
 
         const formData = {
-            name,
-            email,
-            phone,
-            position,
-            coverLetter,
-            resume,
-            linkedin,
-            image,
+            name: form.fullName.value,
+            email: form.email.value,
+            phone: form.phone.value,
+            position: form.position.value,
+            coverLetter: form.coverLetter.value,
+            resume: form.resume.value,
+            linkedin: form.linkedin.value,
+            image: form.img.value,
             job_id: data._id,
             jobInfo: {
                 company: data.company,
@@ -46,182 +29,137 @@ const JobApply = () => {
                 responsibilities: data.responsibilities,
                 hr_email: data.hr_email,
                 hr_name: data.hr_name,
-                company_logo: data.company_logo
-            }
-        }
-
-        // console.log(formData);
-
-
-        fetch('https://job-portal-server-one-alpha.vercel.app/apply', {
-            method: "POST",
-            headers: {
-                'content-type': "application/json"
+                company_logo: data.company_logo,
             },
-            body: JSON.stringify(formData)
-        })
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data)
-                if (data.insertedId) {
-                    Swal.fire({
-                        title: 'Successful',
-                        text: 'You Applied For the job SuccessFully.',
-                        icon: 'success',
-                        confirmButtonText: "OK"
-                    })
-                    e.target.reset()
-                    navigate('/myApply')
-                }
+        };
 
-            })
+        fetch("https://job-portal-server-one-alpha.vercel.app/apply", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(formData),
+        })
+            .then((res) => res.json())
+            .then((resData) => {
+                if (resData.insertedId) {
+                    Swal.fire({
+                        title: "Application Sent!",
+                        text: "You have successfully applied for this job.",
+                        icon: "success",
+                        confirmButtonText: "Great!",
+                    });
+                    form.reset();
+                    navigate("/myApply");
+                }
+            });
     };
 
     return (
-        <div>
+        <section className="bg-gray-50 py-12 lg:pt-24 px-4 sm:px-6 lg:px-8 min-h-screen">
+            <div className="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl">
+                <h2 className="text-3xl font-bold text-center text-blue-700 mb-10">
+                    Apply for {data.title}
+                </h2>
 
-            <div className="max-w-3xl mx-auto p-6 bg-gray-100 py-2 md:py-10 shadow-md rounded-lg">
-                <h2 className="md:text-2xl text-xl text-center bg-base-300 py-2 rounded-full mt-5 font-bold mb-4 text-gray-800">Job Application Form</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Full Name */}
-                    <div>
-                        <label htmlFor="fullName" className="block text-sm font-medium text-gray-700">
-                            Full Name
-                        </label>
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="col-span-1">
+                        <label className="block text-sm font-medium text-gray-700">Full Name</label>
                         <input
                             type="text"
-                            id="fullName"
                             name="fullName"
                             defaultValue={user.displayName}
-
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 p-2 sm:text-sm"
-                            placeholder="Enter your full name"
+                            className="input input-bordered w-full mt-1"
                             required
                         />
                     </div>
 
-                    {/* Email Address */}
-                    <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                            Email Address
-                        </label>
+                    <div className="col-span-1">
+                        <label className="block text-sm font-medium text-gray-700">Email Address</label>
                         <input
                             type="email"
-                            id="email"
                             name="email"
                             defaultValue={user.email}
-
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm p-2"
-                            placeholder="Enter your email"
+                            className="input input-bordered w-full mt-1"
                             required
                         />
                     </div>
 
-                    {/* Phone Number */}
-                    <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                            Phone Number
-                        </label>
+                    <div className="col-span-1">
+                        <label className="block text-sm font-medium text-gray-700">Phone Number</label>
                         <input
                             type="tel"
-                            id="phone"
                             name="phone"
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm p-2"
-                            placeholder="Enter your phone number (+88 0177777777)"
+                            placeholder="+8801XXXXXXXXX"
+                            className="input input-bordered w-full mt-1"
                             required
                         />
                     </div>
 
-                    {/* Image */}
-                    <div>
-                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                            Image URL
-                        </label>
+                    <div className="col-span-1">
+                        <label className="block text-sm font-medium text-gray-700">Image URL</label>
                         <input
-                            type="text"
-                            id="img"
+                            type="url"
                             name="img"
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm p-2"
-                            placeholder="Enter your Image link here."
+                            placeholder="Paste image link"
+                            className="input input-bordered w-full mt-1"
                             required
                         />
                     </div>
 
-                    {/* Position */}
-                    <div>
-                        <label htmlFor="position" className="block text-sm font-medium text-gray-700">
-                            Position Applying For
-                        </label>
+                    <div className="col-span-1">
+                        <label className="block text-sm font-medium text-gray-700">Position</label>
                         <input
                             type="text"
-                            id="position"
                             name="position"
                             defaultValue={data.title}
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm p-2"
-                            placeholder="Enter the position"
+                            className="input input-bordered w-full mt-1"
                             required
                         />
                     </div>
 
-                    {/* Cover Letter */}
-                    <div>
-                        <label htmlFor="coverLetter" className="block text-sm font-medium text-gray-700">
-                            Cover Letter
-                        </label>
+                    <div className="col-span-1">
+                        <label className="block text-sm font-medium text-gray-700">Resume (URL)</label>
+                        <input
+                            type="url"
+                            name="resume"
+                            placeholder="Paste resume link"
+                            className="input input-bordered w-full mt-1"
+                            required
+                        />
+                    </div>
+
+                    <div className="col-span-1 md:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700">LinkedIn Profile</label>
+                        <input
+                            type="url"
+                            name="linkedin"
+                            placeholder="https://linkedin.com/in/yourprofile"
+                            className="input input-bordered w-full mt-1"
+                            required
+                        />
+                    </div>
+
+                    <div className="col-span-1 md:col-span-2">
+                        <label className="block text-sm font-medium text-gray-700">Cover Letter</label>
                         <textarea
-                            id="coverLetter"
                             name="coverLetter"
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm p-2"
-                            placeholder="Write a brief cover letter"
-                            rows="4"
+                            rows="5"
+                            placeholder="Write your cover letter..."
+                            className="textarea textarea-bordered w-full mt-1"
                             required
                         ></textarea>
                     </div>
 
-                    {/* Resume Upload */}
-                    <div>
-                        <label htmlFor="resume" className="block text-sm font-medium text-gray-700">
-                            Upload Resume
-                        </label>
-                        <input
-                            type="url"
-                            id="resume"
-                            name="resume"
-                            placeholder="Input resume URL"
-                            className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100 p-2"
-                            required
-                        />
-                    </div>
-
-                    {/* Linkedin Upload */}
-                    <div>
-                        <label htmlFor="resume" className="block text-sm font-medium text-gray-700">
-                            Linked In URL:
-                        </label>
-                        <input
-                            type="url"
-                            id="li"
-                            name="linkedin"
-                            placeholder="Input LinkedIn URL"
-                            className="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border file:border-gray-300 file:text-sm file:font-medium file:bg-gray-50 file:text-gray-700 hover:file:bg-gray-100 p-2"
-                            required
-                        />
-                    </div>
-
-                    {/* Submit Button */}
-                    <div>
+                    <div className="col-span-1 md:col-span-2 text-center mt-6">
                         <button
                             type="submit"
-                            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                            className="btn btn-primary px-10 text-white hover:scale-105 transition-transform"
                         >
-                            Submit Application
+                            🚀 Submit Application
                         </button>
                     </div>
                 </form>
             </div>
-
-
-        </div>
+        </section>
     );
 };
 
