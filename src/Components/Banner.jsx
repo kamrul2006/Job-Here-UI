@@ -1,66 +1,69 @@
-import bg from "../assets/banner3.jpg"
+import bg from "../assets/banner3.jpg";
+import si from "../assets/abc.png";
+import sii from "../assets/s2.png";
 import { motion } from "framer-motion";
-import si from "../assets/abc.png"
-import sii from "../assets/s2.png"
-import { JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
 import { Link } from "react-router-dom";
+
 const Banner = () => {
     return (
-        <div className="lg:pt-20">
-            <div
-                className=" bg-cover bg-center mb-5 md:mb-10 lg:pt-10"
-                style={{ backgroundImage: `url(${bg})`, }}>
+        <section
+            className="relative bg-cover bg-center min-h-screen flex items-center justify-center"
+            style={{ backgroundImage: `url(${bg})` }}
+        >
+            <div className="absolute inset-0 bg-gradient-to-br from-white/80 to-yellow-100/70 backdrop-blur-sm"></div>
 
-                <div className=" md:flex items-center">
+            <div className="relative z-10 max-w-6xl mx-auto px-6 py-16 flex flex-col-reverse md:flex-row items-center justify-between gap-12">
 
-                    {/* ----------------text div ------------------ */}
-                    <div className=" text-neutral-content py-5 md:py-24 md:w-1/2 mx-auto">
-                        <div className="pl-5 md:pl-20">
-                            <Zoom direction="left" delay={50}>
-                                <h1
-                                    className="md:mb-5 mb-2 text-blue-700 text-3xl md:text-5xl font-bold md:w-3/4">
-                                    The Easiest Way
-                                    to Get Your New Job
-                                </h1></Zoom>
+                {/* Text Content */}
+                <div className="md:w-1/2 text-center md:text-left space-y-6">
+                    <motion.h1
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
+                        className="text-4xl md:text-5xl font-extrabold text-yellow-800"
+                    >
+                        Land Your Dream Job Effortlessly
+                    </motion.h1>
 
-                            <Slide duration={1500}>
-                                <p className="mb-5 text-xs md:text-base text-error">
-                                    Each month, more than 3 million job seekers turn to <br />
-                                    website in their search for work, making over 140,000 <br />
-                                    applications every single day
-                                </p></Slide>
-                            <JackInTheBox>
-                                <Link to={"/allJob"}>
-                                    <button className="btn btn-primary btn-outline btn-xs rounded-full md:btn-sm">Get Started</button>
-                                </Link>
-                            </JackInTheBox>
-                        </div>
-                    </div>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.5, duration: 1 }}
+                        className="text-gray-700 text-sm md:text-base"
+                    >
+                        Join millions of successful job seekers using JobHere. Apply confidently, grow consistently, and find your career path in seconds.
+                    </motion.p>
 
-                    {/* -------------------------image div--------- */}
-                    <div className="mx-auto w-1/2 pb-10 md:pr-10">
-                        <motion.img
-                            animate={{ x: [1, 30, 0], y: [10, 50, 10] }}
-                            transition={{ duration: 3, delay: 1, ease: "linear", repeat: Infinity, }} src={sii} className="rounded-full ml-auto w-1/3 h-1/4 md:hidden" />
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 1, duration: 0.6 }}
+                    >
+                        <Link to="/allJob">
+                            <button className="bg-yellow-700 text-white px-6 py-2 rounded-full text-sm hover:bg-yellow-800 transition">
+                                Explore Opportunities
+                            </button>
+                        </Link>
+                    </motion.div>
+                </div>
 
-                        <motion.div
-                            animate={{ x: [0, 20, 0] }}
-                            transition={{ duration: 3, delay: 1, ease: "linear", repeat: Infinity, }}>
-                            <img
-                                src={si} className=" mx-auto w-40 md:w-full h-1/2 -mb-10" />
-                        </motion.div>
+                {/* Image Content */}
+                <div className="md:w-1/2 flex justify-center relative">
+                    {/* Animated Side Circles */}
 
-                        <motion.img
-                            animate={{ x: [1, -30, 0], y: [1, -30, 0] }}
-                            transition={{ duration: 3, delay: 1, ease: "linear", repeat: Infinity, }} src={sii} className="rounded-full w-1/3 h-1/4 mr-auto md:hidden" />
 
-                    </div>
+                    <motion.img
+                        src={si}
+                        className="border-b-4 border-yellow-500 h-auto rounded-xl shadow-2xl"
+                        animate={{ rotate: [0, 2, -2, 0] }}
+                        transition={{ duration: 6, repeat: Infinity }}
+                    />
+
+
                 </div>
             </div>
-        </div>
+        </section>
     );
 };
 
 export default Banner;
-
-
