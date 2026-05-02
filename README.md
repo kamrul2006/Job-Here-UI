@@ -4,9 +4,8 @@
 
 ---
 🔴 It is suitable for large device only.
----
 
-<br/>
+---
 
 Thanks
 
